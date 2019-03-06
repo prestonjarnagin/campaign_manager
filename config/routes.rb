@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   get '/', to: 'sessions#new'
+  get '/dashboard', to: 'dashboard#show'
 
   post 'login', to: 'sessions#create'
 
