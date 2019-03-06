@@ -68,5 +68,18 @@ RSpec.feature "Registrations", type: :feature do
       expect(current_path).to eq(new_user_path)
       expect(page).to have_content("Error")
     end
+
+    it 'last name is missing' do
+      fill_in('user_email', :with => '')
+      fill_in('user_password', :with => 'password1')
+      fill_in('user_password_confirmation', :with => 'password1')
+      fill_in('user_first_name', :with => 'Jane')
+      fill_in('user_last_name', :with => '')
+      click_button 'Create Account'
+
+      expect(User.count).to eq(0)
+      expect(current_path).to eq(new_user_path)
+      expect(page).to have_content("Error")
+    end
   end
 end
