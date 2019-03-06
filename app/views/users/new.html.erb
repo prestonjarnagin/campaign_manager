@@ -1,3 +1,6 @@
+<% if flash[:error] %>
+  <%= flash[:error] %>
+<% end %>
 <%= form_for @user do |form| %>
   Email: <%= form.email_field :email %>
 
