@@ -29,7 +29,7 @@ RSpec.feature "Registrations", type: :feature do
 
     it 'email isnt unique missing' do
       existing_email = 'jane@doe.com'
-      create(:user, existing_email)
+      create(:user, email: existing_email)
 
       fill_in('user_email', :with => existing_email)
       fill_in('user_password', :with => 'password1')
@@ -38,7 +38,7 @@ RSpec.feature "Registrations", type: :feature do
       fill_in('user_last_name', :with => 'Doe')
       click_button 'Create Account'
 
-      expect(User.count).to eq(0)
+      expect(User.count).to eq(1)
       expect(current_path).to eq(new_user_path)
 
     end
