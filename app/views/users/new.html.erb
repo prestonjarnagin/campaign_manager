@@ -1,0 +1,13 @@
+<%= form_for @user do |form| %>
+  Email: <%= form.email_field :email %>
+
+  First Name <%= form.text_field :first_name %>
+
+  Last Name <%= form.text_field :last_name %>
+
+  Password <%= form.password_field :password %>
+
+  Confirm Password <%= form.password_field :password_confirmation %>
+
+  <%= form.submit 'Create Account' %>
+<% end %>
