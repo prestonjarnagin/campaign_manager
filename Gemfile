@@ -41,6 +41,8 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
