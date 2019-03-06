@@ -27,7 +27,7 @@ RSpec.feature "Registrations", type: :feature do
       visit new_user_path
     end
 
-    it 'email isnt unique missing' do
+    it 'email isnt unique' do
       existing_email = 'jane@doe.com'
       create(:user, email: existing_email)
 
