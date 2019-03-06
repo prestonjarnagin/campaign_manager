@@ -11,13 +11,8 @@ class UsersController < ApplicationController
     if user.save
       redirect_to dashboard_path
     else
-      # From the Rails Docs:
-      # Using render with :action is a frequent source of confusion for Rails newcomers.
-      # The specified action is used to determine which view to render, but Rails does not run any of the code for that action in the controller.
-      # Any instance variables that you require in the view must be set up in the current action before calling render.
-      @user = User.new
       flash[:error] = "Error"
-      render :new
+      redirect_to new_user_path
     end
   end
   private
