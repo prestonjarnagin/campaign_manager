@@ -7,10 +7,14 @@ RSpec.feature "Logins", type: :feature do
     expect(page).to have_content('Mango')
   end
 
-  it 'shows login boxes' do
+  it 'allows existing user to login' do
+    user = create(:user)
     visit '/'
 
-    expect(page).to have_field("email", placeholder: "Email")
-    expect(page).to have_field("password", placeholder: "Password")
+    fill_in :session_email, with: user.email
+    fill_in :session_password, with: user.password
+
+    click_button 'Login'
+    expect(current_path).to eq(dashboard_path)
   end
 end
