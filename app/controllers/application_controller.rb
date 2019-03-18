@@ -3,8 +3,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_user
-   if session[:user_id]
-     @current_user ||= User.find_by(id: session[:user_id])
-   end
+    @current_user ||= User.find_by(id: uid) if uid
+  end
+
+  private
+
+  def uid
+    session[:user_id]
   end
 end
