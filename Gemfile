@@ -45,6 +45,7 @@ group :test do
   gem 'launchy'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'fuubar'
 end
 
 group :development do
