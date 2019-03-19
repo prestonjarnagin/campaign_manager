@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
 
   resources :users, only: [:new, :create]
-  resources :contacts, only: [:index]
+  resources :contacts, only: [:index, :new, :create]
 end
