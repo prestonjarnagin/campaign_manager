@@ -1,0 +1,21 @@
+<%= render partial: "application/navbar" %>
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
+
+<%= form_for @contact do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "", placeholder: "Name" %>
+  </div>
+  <div>
+    <%= f.label :internal_name %>
+    <%= f.text_field :internal_name, class: "", placeholder: "Inernal Name" %>
+  </div>
+  <div>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number, class: "", placeholder: "Phone Number" %>
+  </div>
+
+  <%= f.submit 'Create Contact', class: "" %>
+<% end %>
