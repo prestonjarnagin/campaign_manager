@@ -35,5 +35,31 @@ RSpec.describe 'Contacts' do
       expect(current_path).to eq(contacts_path)
       expect(Contact.count).to eq(1)
     end
+
+    describe 'doesnt save a new contact if missing...' do
+      it 'name' do
+        contact = attributes_for(:contact)
+
+        fill_in :contact_internal_name, with: contact[:internal_name]
+        fill_in :contact_phone_number, with: contact[:phone_number]
+        click_on 'Create Contact'
+
+        expect(current_path).to eq(new_contact_path)
+        expect(page).to have_content('Error')
+        expect(Contact.count).to eq(0)
+      end
+
+      it 'phone number' do
+        contact = attributes_for(:contact)
+
+        fill_in :contact_name, with: contact[:name]
+        fill_in :contact_internal_name, with: contact[:internal_name]
+        click_on 'Create Contact'
+
+        expect(current_path).to eq(new_contact_path)
+        expect(page).to have_content('Error')
+        expect(Contact.count).to eq(0)
+      end
+    end
   end
 end
