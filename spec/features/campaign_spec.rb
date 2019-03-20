@@ -10,11 +10,18 @@ RSpec.describe 'Campagins' do
   end
 
   describe 'Adding a new campagin' do
-    it 'shows a link from the navbar' do
+    it 'Shows a link from the navbar' do
       within('nav') do
         click_link('Campaigns')
         expect(current_path).to eq(campaigns_path)
       end
+    end
+
+    it 'Allows for creation of a new campagin' do
+      visit new_campaign_path
+      campaign = attributes_for(:campaign)
+
+      fill_in :campaign_name, with: campaign[:name]
     end
   end
 end
