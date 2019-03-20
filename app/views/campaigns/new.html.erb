@@ -1,5 +1,13 @@
-<h1>New Campaign</h1>
+<%= render partial: "application/navbar" %>
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
 
-<%= render 'form', campaign: @campaign %>
+<%= form_for @campaign do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "", placeholder: "Name" %>
+  </div>
 
-<%= link_to 'Back', campaigns_path %>
+  <%= f.submit 'Create Contact', class: "" %>
+<% end %>
