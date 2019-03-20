@@ -11,7 +11,7 @@ class ContactsController < ApplicationController
     rescue
       flash[:error] = 'Error'
       @contact = Contact.new
-      render :new
+      redirect_to new_contact_path
     end
   end
 
