@@ -22,6 +22,9 @@ RSpec.describe 'Campagins' do
       campaign = attributes_for(:campaign)
 
       fill_in :campaign_name, with: campaign[:name]
+      save_and_open_page
+      click_on 'Create Campaign'
+
     end
   end
 end
