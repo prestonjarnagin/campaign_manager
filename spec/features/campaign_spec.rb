@@ -36,9 +36,36 @@ RSpec.describe 'Campaigns' do
       click_on 'Remove'
       expect(page.all('.message-text-field').count).to eq(0)
     end
+
     it 'Allows for creation of a new campaign', js: true do
+      campaign = build(:campaign)
+      messages = build_list(:message, 2)
+      visit new_campaign_path
+      click_on 'Add Message'
+      click_on 'Add Message'
+
+      message_box_1     = find('.nested-fields:nth-child(1)').find('textarea')
+      elapse_time_box_1 = find('.nested-fields:nth-child(1)').find('input')
+      message_box_2     = find('.nested-fields:nth-child(2)').find('textarea')
+      elapse_time_box_2 = find('.nested-fields:nth-child(2)').find('input')
+
+      fill_in :campaign_name, with: campaign.name
+      message_box_1.fill_in     with: messages[0].text
+      elapse_time_box_1.fill_in with: messages[0].elapse_minutes
+      message_box_2.fill_in     with: messages[1].text
+      elapse_time_box_2.fill_in with: messages[1].elapse_minutes
+
       click_on 'Create Campaign'
 
+      c = Campaign
+      expect(c.count).to eq(1)
+      first = c.first
+      expect(first.name).to                        eq(campaign.name)
+      expect(first.messages.length).to             eq(2)
+      expect(first.messages[0].text).to            eq(messages[0].text)
+      expect(first.messages[0].elapse_minutes).to  eq(messages[0].elapse_minutes)
+      expect(first.messages[1].text).to            eq(messages[1].text)
+      expect(first.messages[1].elapse_minutes).to  eq(messages[1].elapse_minutes)
     end
   end
 end
