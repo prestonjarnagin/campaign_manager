@@ -12,3 +12,17 @@
 //
 //= require rails-ujs
 //= require_tree .
+//= require jquery
+
+$(document).ready(function() {
+  $('.remove-link').click(function(event){
+    this.parentElement.remove()
+    event.preventDefault(); // Prevent link from following its href
+  });
+
+  // $('#add-link').click(function(event){
+  //   console.log("ggg")
+  //   $('.fields').append("<%=j render 'message' %>")
+  //   event.preventDefault(); // Prevent link from following its href
+  // });
+});
