@@ -1,8 +1,13 @@
 <div class='nested-fields'>
 
-  <div class='field'>
+  <div class='field message-text-field'>
     <%= f.label :text, "Message Text" %>
     <%= f.text_area :text %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :elapse_minutes, "Minutes to Wait" %>
+    <%= f.number_field :elapse_minutes %>
   </div>
 
   <%= link_to_remove_association "Remove", f %>
