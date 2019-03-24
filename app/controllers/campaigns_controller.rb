@@ -24,16 +24,7 @@ class CampaignsController < ApplicationController
 
   private
     def campaign_params
-      params.require(:campaign).permit(:name)
-    end
-
-    def messages
-      # TODO: This is probably vulnerable to SQL injections. Is there a Gem that could help?
-      # OPTIMIZE: This logic can be broken out of the controller into a seperate class
-      temp = []
-      params[:campaign][:messages_attributes].each do |message|
-        temp << params[:campaign][:messages_attributes][message][:text]
-      end
-      temp
+      params.require(:campaign)
+      .permit(:name, :messages_attributes => [:text, :elapse_minutes, :_destroy])
     end
 end
