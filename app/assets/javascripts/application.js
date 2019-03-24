@@ -26,3 +26,4 @@ $(document).ready(function() {
   //   event.preventDefault(); // Prevent link from following its href
   // });
 });
+//= require cocoon
