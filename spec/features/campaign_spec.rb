@@ -17,14 +17,26 @@ RSpec.describe 'Campaigns' do
       end
     end
 
-    it 'Allows for creation of a new campaign' do
+    it 'Allows for dynamic addition of new message fields', js: true do
       visit new_campaign_path
-      campaign = attributes_for(:campaign)
 
-      fill_in :campaign_name, with: campaign[:name]
-      fill_in :campaign_messages_attributes_0_text, with: "Test"
-      fill_in :campaign_messages_attributes_1_text, with: "Test"
-      fill_in :campaign_messages_attributes_2_text, with: "Test"
+      expect(page.all('.message-text-field').count).to eq(0)
+      click_on 'Add Message'
+      expect(page.all('.message-text-field').count).to eq(1)
+      click_on 'Add Message'
+      click_on 'Add Message'
+      expect(page.all('.message-text-field').count).to eq(3)
+    end
+
+    it 'Allows for dynamic deletion of message fields', js: true do
+      visit new_campaign_path
+
+      click_on 'Add Message'
+      expect(page.all('.message-text-field').count).to eq(1)
+      click_on 'Remove'
+      expect(page.all('.message-text-field').count).to eq(0)
+    end
+    it 'Allows for creation of a new campaign', js: true do
       click_on 'Create Campaign'
 
     end
