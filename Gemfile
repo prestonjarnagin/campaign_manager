@@ -30,6 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem "actionview", ">= 5.1.6.2"
 gem 'jquery-rails'
+gem 'cocoon'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
