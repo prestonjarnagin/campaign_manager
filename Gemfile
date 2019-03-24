@@ -49,6 +49,7 @@ group :test do
   gem 'faker'
   gem 'fuubar'
   gem 'simplecov'
+  gem 'poltergeist'
 end
 
 group :development do
