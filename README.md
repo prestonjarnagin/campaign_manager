@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+brew tap homebrew/cask && brew cask install phantomjs
