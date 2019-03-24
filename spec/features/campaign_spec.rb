@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Campagins' do
+RSpec.describe 'Campaigns' do
   before(:each) do
     user = create(:user)
     allow_any_instance_of(ApplicationController)
@@ -9,7 +9,7 @@ RSpec.describe 'Campagins' do
     visit dashboard_path
   end
 
-  describe 'Adding a new campagin' do
+  describe 'Adding a new campaign' do
     it 'Shows a link from the navbar' do
       within('nav') do
         click_link('Campaigns')
@@ -17,12 +17,14 @@ RSpec.describe 'Campagins' do
       end
     end
 
-    it 'Allows for creation of a new campagin' do
+    it 'Allows for creation of a new campaign' do
       visit new_campaign_path
       campaign = attributes_for(:campaign)
 
       fill_in :campaign_name, with: campaign[:name]
-      save_and_open_page
+      fill_in :campaign_messages_attributes_0_text, with: "Test"
+      fill_in :campaign_messages_attributes_1_text, with: "Test"
+      fill_in :campaign_messages_attributes_2_text, with: "Test"
       click_on 'Create Campaign'
 
     end

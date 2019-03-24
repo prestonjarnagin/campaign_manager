@@ -10,11 +10,13 @@
   </div>
 
   <div class="fields">
-    <%= f.fields_for :tasks do |builder| %>
+    <%= f.fields_for :messages do |builder| %>
         <%= render 'message', f: builder %>
         <br>
     <% end %>
   </div>
+  <%# link_to "Add", "", id: 'add-link' %>
+
 
   <%= f.submit 'Create Campaign', class: "" %>
 <% end %>
