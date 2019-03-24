@@ -6,9 +6,6 @@ class CampaignsController < ApplicationController
 
   def new
     @campaign = Campaign.new
-    3.times do
-      @campaign.messages.build
-    end
   end
 
   def create
