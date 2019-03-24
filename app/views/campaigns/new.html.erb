@@ -3,20 +3,4 @@
   <%= content_tag :div, msg, class: name %>
 <% end %>
 
-<%= form_for @campaign do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "", placeholder: "Campaign Name" %>
-  </div>
-
-  <div class="fields">
-    <%= f.fields_for :messages do |builder| %>
-        <%= render 'message', f: builder %>
-        <br>
-    <% end %>
-  </div>
-  <%# link_to "Add", "", id: 'add-link' %>
-
-
-  <%= f.submit 'Create Campaign', class: "" %>
-<% end %>
+<%= render 'form' %>

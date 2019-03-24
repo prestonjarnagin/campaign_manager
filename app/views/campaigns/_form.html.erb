@@ -1,0 +1,17 @@
+<%= form_for @campaign do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "Campaign Name" %>
+  </div>
+
+  <h3>Messages</h3>
+  <div id='messages'>
+    <%= f.fields_for :messages do |message| %>
+        <%= render 'message_fields', f: message %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'Add Message', f, :messages %>
+    </div>
+  </div>
+  <%= f.submit 'Create Campaign', class: "" %>
+<% end %>
