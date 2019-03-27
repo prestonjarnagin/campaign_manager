@@ -1,1 +1,21 @@
 <%= link_to "Add New Contact", new_contact_path %>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Display Name</th>
+      <th scope="col">Internal Name</th>
+      <th scope="col">Phone Number</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact|%>
+    <tr>
+      <td><%= contact.name %></td>
+      <td><%= contact.internal_name %></td>
+      <td><%= contact.phone_number %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
