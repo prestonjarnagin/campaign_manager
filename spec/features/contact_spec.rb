@@ -14,6 +14,22 @@ RSpec.describe 'Contacts' do
       expect(current_path).to eq(contacts_path)
     end
   end
+
+  it 'shows all contacts on the index page' do
+    contacts = create_list(:contact, 6)
+    within('nav') do
+      click_link('Contacts')
+    end
+    save_and_open_page
+    contacts.each do |contact|
+      expect(page).to have_content(contact.name)
+      expect(page).to have_content(contact.internal_name)
+      expect(page).to have_content(contact.phone_number)
+    end
+
+
+  end
+
   describe 'Adding' do
     before(:each) do
       within('nav') do
