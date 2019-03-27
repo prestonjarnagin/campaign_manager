@@ -16,7 +16,9 @@ RSpec.describe 'Contacts' do
   end
   describe 'Adding' do
     before(:each) do
-      click_link('Contacts')
+      within('nav') do
+        click_link('Contacts')
+      end
       click_link('Add New Contact')
     end
 
