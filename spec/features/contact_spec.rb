@@ -20,7 +20,6 @@ RSpec.describe 'Contacts' do
     within('nav') do
       click_link('Contacts')
     end
-    save_and_open_page
     contacts.each do |contact|
       expect(page).to have_content(contact.name)
       expect(page).to have_content(contact.internal_name)
