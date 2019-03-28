@@ -68,7 +68,7 @@ jobs: # a collection of steps
 
       - run:
           name: Install PhantomJS
-          command: sudo apt-get install phantomjs
+          command: brew tap homebrew/cask && brew cask install phantomjs
 
       - run:
           name: Run rspec in parallel
