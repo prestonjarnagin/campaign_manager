@@ -10,7 +10,7 @@ RSpec.describe 'Campaigns' do
   end
 
 
-  describe 'Index page' do
+  describe 'Index Page' do
     it 'Shows a link from the navbar' do
       within('nav') do
         click_link('Campaigns')
@@ -28,7 +28,7 @@ RSpec.describe 'Campaigns' do
     end
   end
 
-  describe 'Adding a new campaign' do
+  describe 'Adding a New Campaign' do
 
     it 'Allows for dynamic addition of new message fields', js: true do
       visit new_campaign_path
