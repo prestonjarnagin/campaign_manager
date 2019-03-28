@@ -26,6 +26,34 @@ RSpec.describe 'Campaigns' do
       expect(page).to have_content(list[1].name)
       expect(page).to have_content(list[2].name)
     end
+
+    it 'links to all campaigns' do
+      list = create_list(:campaign, 3)
+      visit campaigns_path
+
+      within("#campaign-#{list[0].id}") do
+        click_on 'See Campaign'
+      end
+      expect(current_path).to eq(campaign_path(list[0]))
+    end
+  end
+
+  describe 'Show Page' do
+    let(:campaign) { create(:campaign) }
+
+    before(:each) do
+      create_list(:message, 5, campaign: campaign)
+    end
+
+    it 'Shows Campaign Information' do
+      visit campaign_path(campaign)
+
+      expect(page).to have_content(campaign.name)
+      campaign.messages.each do |message|
+        expect(page).to have_content(message.text)
+        expect(page).to have_content(message.elapse_minutes)
+      end
+    end
   end
 
   describe 'Adding a New Campaign' do
