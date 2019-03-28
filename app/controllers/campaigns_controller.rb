@@ -14,6 +14,10 @@ class CampaignsController < ApplicationController
     redirect_to campaigns_path
   end
 
+  def show
+    @campaign = Campaign.find(params[:id])
+  end
+
   private
     def campaign_params
       params.require(:campaign)
