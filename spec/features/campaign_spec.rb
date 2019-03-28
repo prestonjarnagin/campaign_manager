@@ -9,13 +9,26 @@ RSpec.describe 'Campaigns' do
     visit dashboard_path
   end
 
-  describe 'Adding a new campaign' do
+
+  describe 'Index page' do
     it 'Shows a link from the navbar' do
       within('nav') do
         click_link('Campaigns')
         expect(current_path).to eq(campaigns_path)
       end
     end
+
+    it 'shows all campaigns' do
+      list = create_list(:campaign, 3)
+      visit campaigns_path
+
+      expect(page).to have_content(list[0].name)
+      expect(page).to have_content(list[1].name)
+      expect(page).to have_content(list[2].name)
+    end
+  end
+
+  describe 'Adding a new campaign' do
 
     it 'Allows for dynamic addition of new message fields', js: true do
       visit new_campaign_path
