@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :contacts, only: [:index, :new, :create]
-  resources :campaigns, only: [:index, :new, :create]
+  resources :campaigns, only: [:index, :new, :create, :show]
 end
