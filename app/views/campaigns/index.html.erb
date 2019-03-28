@@ -6,9 +6,12 @@
 <h1>Campaigns</h1>
 
 <%= link_to 'New Campaign', new_campaign_path %>
-
-<%= @campaigns.each do |campaign| %>
-  <%= campaign.name %>
-  <%= link_to 'See Campaign', campaign_path(campaign) %>
-  <br>
+<br>
+<br>
+<% @campaigns.each do |campaign| %>
+  <div class="campaign", id="campaign-<%= campaign.id %>">
+    <%= campaign.name %>
+    <%= link_to 'See Campaign', campaign_path(campaign) %>
+    <br>
+  </div>
 <% end %>
