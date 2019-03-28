@@ -1,0 +1,8 @@
+<%= @campaign.name %>
+
+<br>
+
+<% @campaign.messages.each do |message| %>
+  <%= message.text %>
+  <%= message.elapse_minutes %>
+<% end %>
