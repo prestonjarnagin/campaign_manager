@@ -1,3 +1,8 @@
+<%= render partial: "application/navbar" %>
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
+
 <%= link_to "Add New Contact", new_contact_path %>
 
 <table class="table">
