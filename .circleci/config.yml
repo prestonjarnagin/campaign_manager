@@ -67,8 +67,8 @@ jobs: # a collection of steps
           # command: bin/rails db:schema:load --trace
 
       - run:
-        name: Install PhantomJS
-        command: sudo apt-get install phantomjs
+          name: Install PhantomJS
+          command: sudo apt-get install phantomjs
 
       - run:
           name: Run rspec in parallel
