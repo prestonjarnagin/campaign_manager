@@ -27,6 +27,8 @@ class ContactsController < ApplicationController
     params.require(:contact).permit(:name, :internal_name, :phone_number)
   end
 
+  # TODO: This logic should probably be pushed out to the model.
+  # Pass params[:campaign_ids] to it (may be nil) and have to model fail gracefully
   def campaign_ids
     (params[:campaign_ids]||[]).map(&:to_i)
   end
