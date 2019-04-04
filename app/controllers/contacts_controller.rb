@@ -6,7 +6,8 @@ class ContactsController < ApplicationController
 
   def create
     begin
-      Contact.create!(contact_params)
+      contact = Contact.create!(contact_params)
+      contact.add_campaigns(campaign_ids)
       redirect_to contacts_path
     rescue
       flash[:error] = 'Error'
@@ -16,6 +17,7 @@ class ContactsController < ApplicationController
   end
 
   def new
+    @campaigns = Campaign.all
     @contact = Contact.new
   end
 
@@ -23,6 +25,10 @@ class ContactsController < ApplicationController
 
   def contact_params
     params.require(:contact).permit(:name, :internal_name, :phone_number)
+  end
+
+  def campaign_ids
+    (params[:campaign_ids]||[]).map(&:to_i)
   end
 
 end
