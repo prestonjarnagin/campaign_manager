@@ -4,6 +4,7 @@
 <% end %>
 
 <%= form_for @contact do |f| %>
+<h1>Create New Contact</h1>
   <div>
     <%= f.label :name %>
     <%= f.text_field :name, class: "", placeholder: "Name" %>
@@ -16,6 +17,18 @@
     <%= f.label :phone_number %>
     <%= f.text_field :phone_number, class: "", placeholder: "Phone Number" %>
   </div>
+
+
+  <div>
+    <h3>Add to Campaigns</h3>
+    <% @campaigns.each do |campaign| %>
+      <%= label_tag "campaign-#{campaign.id}", "#{campaign.name}" %>
+      <%= check_box_tag 'campaign_ids[]', campaign.id, nil, id: "campaign-#{campaign.id}" %>
+    <% end %>
+
+  </div>
+
+
 
   <%= f.submit 'Create Contact', class: "" %>
 <% end %>
