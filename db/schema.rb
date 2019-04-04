@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190324213640) do
+ActiveRecord::Schema.define(version: 20190403030902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campaign_contacts", force: :cascade do |t|
+    t.bigint "campaign_id"
+    t.bigint "contact_id"
+    t.index ["campaign_id"], name: "index_campaign_contacts_on_campaign_id"
+    t.index ["contact_id"], name: "index_campaign_contacts_on_contact_id"
+  end
 
   create_table "campaigns", force: :cascade do |t|
     t.string "name"
@@ -49,5 +56,7 @@ ActiveRecord::Schema.define(version: 20190324213640) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  add_foreign_key "campaign_contacts", "campaigns"
+  add_foreign_key "campaign_contacts", "contacts"
   add_foreign_key "messages", "campaigns"
 end
