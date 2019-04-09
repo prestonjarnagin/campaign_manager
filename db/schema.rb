@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190403030902) do
+ActiveRecord::Schema.define(version: 20190409165443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20190403030902) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contact_messages", force: :cascade do |t|
+    t.bigint "contact_id"
+    t.bigint "message_id"
+    t.datetime "send_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_contact_messages_on_contact_id"
+    t.index ["message_id"], name: "index_contact_messages_on_message_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -58,5 +68,7 @@ ActiveRecord::Schema.define(version: 20190403030902) do
 
   add_foreign_key "campaign_contacts", "campaigns"
   add_foreign_key "campaign_contacts", "contacts"
+  add_foreign_key "contact_messages", "contacts"
+  add_foreign_key "contact_messages", "messages"
   add_foreign_key "messages", "campaigns"
 end
