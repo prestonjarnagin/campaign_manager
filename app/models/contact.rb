@@ -6,6 +6,9 @@ class Contact < ApplicationRecord
   has_many :campaign_contacts
   has_many :campaigns, through: :campaign_contacts
 
+  has_many :contact_messages
+  has_many :messages, through: :contact_messages
+
   def add_campaigns(campaign_ids)
     campaign_ids.each do |id|
       self.campaigns << Campaign.find(id)
