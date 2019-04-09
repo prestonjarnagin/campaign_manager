@@ -22,6 +22,7 @@ RSpec.describe Contact, type: :model do
       contact.add_campaigns(campaign_ids)
 
       expect(contact.campaigns.count).to eq(3)
+      expect(contact.messages.count > 0).to be true
     end
   end
 
