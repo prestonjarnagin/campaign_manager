@@ -5,9 +5,13 @@ RSpec.describe Contact, type: :model do
     it {should validate_presence_of(:name)}
     it {should validate_presence_of(:phone_number)}
     it {should validate_uniqueness_of(:phone_number)}
+  end
 
+  describe 'Relationships' do
     it { should have_many(:campaign_contacts) }
     it { should have_many(:campaigns).through(:campaign_contacts) }
+    it { should have_many(:contact_messages) }
+    it { should have_many(:messages).through(:contact_messages) }
   end
 
   describe 'Instance Methods' do
@@ -20,6 +24,5 @@ RSpec.describe Contact, type: :model do
       expect(contact.campaigns.count).to eq(3)
     end
   end
-
 
 end
