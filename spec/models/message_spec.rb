@@ -8,5 +8,8 @@ RSpec.describe Message, type: :model do
 
   describe 'Relationships' do
     it {should belong_to(:campaign)}
+    it { should have_many(:contact_messages) }
+    it { should have_many(:contacts).through(:contact_messages) }
+
   end
 end
