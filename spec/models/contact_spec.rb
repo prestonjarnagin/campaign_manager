@@ -17,7 +17,7 @@ RSpec.describe Contact, type: :model do
   describe 'Instance Methods' do
     it '#add_campaigns' do
       contact = create(:contact)
-      campaign_ids = create_list(:campaign, 3).map(&:id)
+      campaign_ids = create_list(:campaign_with_messages, 3).map(&:id)
 
       contact.add_campaigns(campaign_ids)
 
