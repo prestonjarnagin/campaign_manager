@@ -10,7 +10,6 @@ class Contact < ApplicationRecord
   has_many :messages, through: :contact_messages
 
   def add_campaigns(campaign_ids)
-
     # Associate campagins with this contact
     campaign_ids.each do |id|
       self.campaigns << Campaign.find(id)
@@ -25,5 +24,4 @@ class Contact < ApplicationRecord
       end
     end
   end
-
 end
