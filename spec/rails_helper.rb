@@ -71,3 +71,17 @@ end
 
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
+
+require 'vcr'
+require 'webmock/rspec'
+
+VCR.configure do |config|
+  config.ignore_localhost = true
+  config.cassette_library_dir = 'spec/cassettes'
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.filter_sensitive_data("<TWILIO_SID>") { ENV['TWILIO_SID'] }
+  config.allow_http_connections_when_no_cassette = true
+  config.filter_sensitive_data("<TWILIO_AUTH_TOKEN>") { ENV['TWILIO_AUTH_TOKEN']}
+  config.filter_sensitive_data("<TWILIO_FROM_NUMBER>") { ENV['TWILIO_FROM_NUMBER']}
+end
