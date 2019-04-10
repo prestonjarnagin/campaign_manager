@@ -33,6 +33,7 @@ gem 'cocoon'
 gem 'figaro'
 gem 'jquery-rails'
 gem 'sidekiq'
+gem 'twilio-ruby'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
