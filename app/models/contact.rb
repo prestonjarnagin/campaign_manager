@@ -16,6 +16,8 @@ class Contact < ApplicationRecord
     end
 
     # Associate messages with this contact on contact_messages with datetimes
+    # QUESTION: Could we talk directly to sidekiq from here instead
+    # of creating database entries and using rake tasks?
     campaigns.each do |campaign|
       time = Time.now
       campaign.messages.each do |message|
