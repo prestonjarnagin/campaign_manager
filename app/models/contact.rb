@@ -23,7 +23,7 @@ class Contact < ApplicationRecord
       campaign.messages.each do |message|
         send_time = time + message.elapse_minutes.minutes
         ContactMessage
-          .create!(message: message, contact: self, send_time: send_time)
+          .create!(message: message, contact: self, send_time: send_time, sent: false)
       end
     end
   end
