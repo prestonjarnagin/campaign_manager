@@ -3,6 +3,18 @@ require 'sidekiq/testing'
 
 RSpec.describe SMSService do
   subject { SMSService }
+
+  describe 'Class Methods' do
+    it '::send_single_message' do
+      VCR.use_cassette("twillio_send_message") do
+        contact_message = create(:contact_message, sent: false)
+        response = SMSService.send_single_message(contact_message)
+
+        expect(response.error_code).to eq(0)
+      end
+    end
+  end
+
   describe 'Instance Methods' do
     let (:message_list_length) { 3 }
     let (:subject) { SMSService.new(create_list(:contact_message, message_list_length, sent: false)) }
