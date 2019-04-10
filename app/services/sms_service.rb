@@ -8,4 +8,9 @@ class SMSService
     
   end
 
+  def send
+    messages.each do |contact_message|
+      SendSmsWorker.perform_async(contact_message)
+    end
+  end
 end
