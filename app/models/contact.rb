@@ -19,8 +19,9 @@ class Contact < ApplicationRecord
     self.campaigns.each do |campaign|
       time = Time.now
       campaign.messages.each do |message|
-        send_time = time + (message.elapse_minutes).minutes
-        ContactMessage.create!(message: message, contact: self, send_time: send_time)
+        send_time = time + message.elapse_minutes.minutes
+        ContactMessage
+          .create!(message: message, contact: self, send_time: send_time)
       end
     end
   end
