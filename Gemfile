@@ -33,7 +33,6 @@ gem 'cocoon'
 gem 'figaro'
 gem 'jquery-rails'
 gem 'sidekiq'
-gem 'whenever'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
