@@ -10,7 +10,9 @@ RSpec.describe SMSService do
         contact_message = create(:contact_message, sent: false)
         response = SMSService.send_single_message(contact_message.id)
 
+        contact_message.reload
         expect(response.error_code).to eq(0)
+        expect(contact_message.sent).to eq(true)
       end
     end
   end
