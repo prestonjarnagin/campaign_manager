@@ -12,17 +12,23 @@ class SMSService
     formatted_number = country_code + original.gsub(/^1\-|^\+1|(x.*)|(\D)/, '')
     body = contact_message.message.text
     from = ENV['TWILIO_FROM_NUMBER']
-    
+
     if Rails.env == 'test'
       to = '+15005550006'
     else
       to = formatted_number
     end
-    res = client.api.account.messages.create(
+    response = client.api.account.messages.create(
       from: from,
       to: to,
       body: body
     )
+
+    if response.error_code == 0
+      contact_message.update!(sent: true)
+    end
+    return response
+
   end
 
   def send
