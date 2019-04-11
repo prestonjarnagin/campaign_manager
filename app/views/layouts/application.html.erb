@@ -13,6 +13,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
 
+  <div id="flash-messages">
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end %>
+  </div>
+
+  <% if current_user %>
+    <%= render partial: "application/navbar" %>
+  <% end %>
+
   <body>
     <%= yield %>
   </body>
