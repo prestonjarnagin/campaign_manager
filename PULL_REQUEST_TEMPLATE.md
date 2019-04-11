@@ -22,7 +22,8 @@ closes #
 
 # Testing Changes
 - [ ] No Tests have been changed
-- [ ] Some Tests have been changed
+- [ ] Some Previous Tests have been changed
+- [ ] Tests Have Been Added
 - [ ] All of the Tests have been changed(Please describe what in the world happened)
 
 # Checklist:
@@ -30,4 +31,4 @@ closes #
 - [ ] My code has no unused/commented out code
 - [ ] I have reviewed my code
 - [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have fully tested my code
+- [ ] I have fully tested my code - Coverage:
