@@ -10,7 +10,7 @@ class SMSService
     country_code = '+1'
     formatted_number = country_code + original.gsub(/^1\-|^\+1|(x.*)|(\D)/, '')
     body = contact_message.message.text
-
+    
     if Rails.env == 'test'
       from = ENV['TWILIO_FROM_NUMBER']
       to = '+15005550006'
@@ -18,13 +18,11 @@ class SMSService
       ENV['TWILIO_FROM_NUMBER']
       to = formatted_number
     end
-
     res = client.api.account.messages.create(
       from: from,
       to: to,
       body: body
     )
-    
   end
 
   def send
@@ -32,7 +30,6 @@ class SMSService
       SendSmsWorker.perform_async(contact_message)
     end
   end
-
 
   private
 
