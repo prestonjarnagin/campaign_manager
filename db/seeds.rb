@@ -44,12 +44,12 @@ ContactMessage.create(
   message: message,
   contact: contact,
   send_time: Time.now - 5.minutes,
-  sent: false
+  sent: true
 )
 
 ContactMessage.create(
   message: message,
   contact: contact,
   send_time: Time.now + 10.minutes,
-  sent: false
+  sent: true
 )
