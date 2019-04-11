@@ -25,8 +25,4 @@ class CampaignsController < ApplicationController
       params.require(:campaign)
       .permit(:name, :messages_attributes => [:text, :elapse_minutes, :_destroy])
     end
-
-    def require_login
-      super
-    end
 end
