@@ -7,13 +7,6 @@ RSpec.describe 'Security' do
       expect(page.status_code).to eq(404)
     end
 
-    describe '/users' do
-      it '/new' do
-        visit '/users/new'
-        expect(page.status_code).to eq(404)
-      end
-    end
-
     describe '/contacts' do
       it '/' do
         visit '/contacts'
