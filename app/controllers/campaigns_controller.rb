@@ -1,5 +1,7 @@
 class CampaignsController < ApplicationController
 
+  before_action :require_login
+
   def index
     @campaigns = Campaign.all
   end
@@ -22,5 +24,9 @@ class CampaignsController < ApplicationController
     def campaign_params
       params.require(:campaign)
       .permit(:name, :messages_attributes => [:text, :elapse_minutes, :_destroy])
+    end
+
+    def require_login
+      super
     end
 end
