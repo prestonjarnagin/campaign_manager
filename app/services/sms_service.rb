@@ -4,18 +4,18 @@ class SMSService
     @_messages = messages
   end
 
-  def self.send_single_message(contact_message)
+  def self.send_single_message(contact_message_id)
     # Assuming all contacts are U.S. phone numbers
+    contact_message = ContactMessage.find(contact_message_id)
     original = contact_message.contact.phone_number
     country_code = '+1'
     formatted_number = country_code + original.gsub(/^1\-|^\+1|(x.*)|(\D)/, '')
     body = contact_message.message.text
+    from = ENV['TWILIO_FROM_NUMBER']
     
     if Rails.env == 'test'
-      from = ENV['TWILIO_FROM_NUMBER']
       to = '+15005550006'
     else
-      ENV['TWILIO_FROM_NUMBER']
       to = formatted_number
     end
     res = client.api.account.messages.create(
@@ -27,7 +27,7 @@ class SMSService
 
   def send
     messages.each do |contact_message|
-      SendSmsWorker.perform_async(contact_message)
+      SendSmsWorker.perform_async(contact_message.id)
     end
   end
 

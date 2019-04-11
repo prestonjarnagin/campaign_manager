@@ -8,7 +8,7 @@ RSpec.describe SMSService do
     it '::send_single_message' do
       VCR.use_cassette("twillio_send_message") do
         contact_message = create(:contact_message, sent: false)
-        response = SMSService.send_single_message(contact_message)
+        response = SMSService.send_single_message(contact_message.id)
 
         expect(response.error_code).to eq(0)
       end
