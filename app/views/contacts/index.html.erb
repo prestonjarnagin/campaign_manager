@@ -1,21 +1,50 @@
+<br>
+<div class="container">
+  <div class='row'>
+    <div class="col"><h1>Contacts</h1></div>
+    <div class="col-6"><%= link_to 'New Contact', new_contact_path, class: "btn btn-primary btn-lg btn-block"%></div>
+  </div>
+</div>
+<br>
+<br>
 
-<%= link_to "Add New Contact", new_contact_path %>
-
-<table class="table">
+<table class="table table-hover">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Display Name</th>
       <th scope="col">Internal Name</th>
       <th scope="col">Phone Number</th>
+      <th scope="col">Details</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @contacts.each do |contact|%>
-    <tr>
+    <% @contacts.each do |contact| %>
+    <tr class="card-header">
+
       <td><%= contact.name %></td>
       <td><%= contact.internal_name %></td>
       <td><%= contact.phone_number %></td>
+      <td class="btn btn-link clickable" data-toggle="collapse" data-target="#contact-detail-<%= contact.id %>"><%= "Details" %></td>
+
+    </tr>
+
+    <tr>
+      <td colspan="4" style="padding: 0px">
+        <div id="contact-detail-<%= contact.id %>" class="collapse">
+          <div class="card-body">
+
+            <%= contact.internal_name %> is a part of these campaigns:
+            <br>
+            <% contact.campaigns.each do |campaign| %>
+              - <%= campaign.name %>
+              <%= link_to 'Show Campaign', campaign_path(campaign) %>
+              <br>
+            <% end %>
+
+          </div>
+        </div>
+      </td>
     </tr>
     <% end %>
   </tbody>
