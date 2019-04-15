@@ -19,7 +19,7 @@
         <%= message.campaign.name %>
       </td>
       <td>
-        <%= (@contact.created_at + message.elapse_minutes).strftime("%A, %m/%d/%Y, %I:%M %p") %>
+        <%= (@contact.created_at + message.elapse_minutes.minutes).strftime("%A, %m/%d/%Y, %I:%M %p") %>
       </td>
       <td>
         <%= message.text %>
