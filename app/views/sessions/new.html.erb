@@ -1,20 +1,11 @@
-Mango
+ <div class="background-container">
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+  <% end %>
 
 <% flash.each do |name, msg| -%>
   <%= content_tag :div, msg, class: name %>
 <% end %>
 
-
-<%= form_for :session, url: login_path do |f| %>
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: "form-control", placeholder: "Password"  %>
-  </div>
-  <%= f.submit 'Login', class: "btn btn-primary" %>
-<% end %>
-
-<%= link_to 'Create Account', new_user_path  %>
+  <%= render 'login_form' %>
+</div>
