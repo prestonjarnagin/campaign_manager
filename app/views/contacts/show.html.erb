@@ -30,9 +30,9 @@
             Actions
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <%= link_to 'Send Now', dashboard_path, class: "dropdown-item" %>
-            <%= link_to 'Cancel Sending', dashboard_path, class: "dropdown-item" %>
             <%= link_to 'Edit Message', dashboard_path, class: "dropdown-item" %>
+            <%= link_to 'Send Now', dashboard_path, class: "dropdown-item text-warning" %>
+            <%= link_to 'Cancel Sending', dashboard_path, class: "dropdown-item text-danger" %>
           </div>
         </div>
       </td>
