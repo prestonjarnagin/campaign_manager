@@ -6,6 +6,10 @@ class ContactsController < ApplicationController
     @contacts = Contact.all
   end
 
+  def show
+    @contact = Contact.find(params[:id])
+  end
+
   def create
     begin
       contact = Contact.create!(contact_params)

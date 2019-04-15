@@ -1,0 +1,42 @@
+<h1><%= @contact.internal_name %></h1>
+<h4>Customer-Facing Name: <%= @contact.name %></h4>
+<h4>Phone Number: <%= @contact.phone_number %></h4>
+
+<h3>Messages</h3>
+
+<table class="table">
+  <thead class="thead-dark">
+    <th scope="col">Campaign Name</th>
+    <th scope="col">Scheduled?</th>
+    <th scope="col">Message Text</th>
+    <th scope="col">Send Now</th>
+  </thead>
+  <tbody>
+
+    <% @contact.messages.each do |message| %>
+    <tr>
+      <td>
+        <%= message.campaign.name %>
+      </td>
+      <td>
+        <%= (@contact.created_at + message.elapse_minutes).strftime("%A, %m/%d/%Y, %I:%M %p") %>
+      </td>
+      <td>
+        <%= message.text %>
+      </td>
+      <td>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Actions
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <%= link_to 'Send Now', dashboard_path, class: "dropdown-item" %>
+            <%= link_to 'Cancel Sending', dashboard_path, class: "dropdown-item" %>
+            <%= link_to 'Edit Message', dashboard_path, class: "dropdown-item" %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
