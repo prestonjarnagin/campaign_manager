@@ -16,12 +16,30 @@ RSpec.describe SMSService do
       end
     end
 
-    it '::parse_message' do
+    describe '::parse_message' do
+      it 'works as intended' do
         message = create(:message, text: "Hello <name>")
         contact_message = create(:contact_message,message: message, sent: false)
         actual = SMSService.parse_message(contact_message.id)
 
         expect(actual).to eq("Hello #{contact_message.contact.name}")
+      end
+
+      it 'doesnt break with convoluted brackets' do
+        message = create(:message, text: "Hello <<>><><><<name>")
+        contact_message = create(:contact_message,message: message, sent: false)
+        actual = SMSService.parse_message(contact_message.id)
+
+        expect(actual).to eq("Hello <<>><><><#{contact_message.contact.name}")
+      end
+
+      it 'doenst break with invalid brackets' do
+        message = create(:message, text: "Hello >>name<<")
+        contact_message = create(:contact_message,message: message, sent: false)
+        actual = SMSService.parse_message(contact_message.id)
+
+        expect(actual).to eq("Hello >>name<<")
+      end
     end
   end
 
