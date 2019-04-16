@@ -6,7 +6,7 @@ RSpec.describe SMSService do
 
   describe 'Class Methods' do
     it '::send_single_message' do
-      VCR.use_cassette("twillio_send_message") do
+      VCR.use_cassette("twilio_send_message") do
         contact_message = create(:contact_message, sent: false)
         response = SMSService.send_single_message(contact_message.id)
 
