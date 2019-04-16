@@ -31,8 +31,10 @@ RSpec.describe 'Campaigns' do
       list = create_list(:campaign, 3)
       visit campaigns_path
 
+
+      save_and_open_page
       within("#campaign-#{list[0].id}") do
-        click_on 'See Campaign'
+        click_on 'Details'
       end
       expect(current_path).to eq(campaign_path(list[0]))
     end
