@@ -98,9 +98,8 @@ RSpec.describe 'Campaigns' do
 
       click_on 'Create Campaign'
 
-      c = Campaign
-      expect(c.count).to eq(1)
-      first = c.first
+      expect(Campaign.count).to eq(1)
+      first = Campaign.first
       expect(first.name).to                        eq(campaign.name)
       expect(first.messages.length).to             eq(2)
       expect(first.messages[0].text).to            eq(messages[0].text)

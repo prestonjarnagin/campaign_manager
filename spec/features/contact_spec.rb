@@ -8,10 +8,10 @@ RSpec.describe 'Contacts' do
     allow_any_instance_of(ApplicationController)
     .to receive(:current_user)
     .and_return(user)
-    visit dashboard_path
   end
 
   it 'shows a link from the navbar' do
+    visit dashboard_path
     within('nav') do
       click_link('Contacts')
       expect(current_path).to eq(contacts_path)
@@ -20,9 +20,7 @@ RSpec.describe 'Contacts' do
 
   it 'shows all contacts on the index page' do
     contacts = create_list(:contact, 6)
-    within('nav') do
-      click_link('Contacts')
-    end
+    visit contacts_path
     contacts.each do |contact|
       expect(page).to have_content(contact.name)
       expect(page).to have_content(contact.internal_name)
@@ -31,21 +29,16 @@ RSpec.describe 'Contacts' do
   end
 
   describe 'Contact creation form' do
-    before(:each) do
-      within('nav') do
-        click_link('Contacts')
-      end
-    end
 
     it 'is accessible from the navbar' do
-      click_link('Add New Contact')
+      visit contacts_path
+      click_link('New Contact')
       expect(current_path).to eq new_contact_path
     end
 
     describe 'allows for' do
       it 'sucessful creation of new contact' do
-        click_link('Add New Contact')
-
+        visit new_contact_path
         fill_in_contact_form(contact)
         click_on 'Create Contact'
 
@@ -56,7 +49,7 @@ RSpec.describe 'Contacts' do
       it 'adding to campaigns at time of creation' do
         campaign_1 = create(:campaign)
         campaign_2 = create(:campaign)
-        click_link('Add New Contact')
+        visit new_contact_path
 
         fill_in_contact_form(contact)
         find(:css, "#campaign-#{campaign_1.id}").set(true)
@@ -69,9 +62,8 @@ RSpec.describe 'Contacts' do
     end
 
     describe 'doesnt save a new contact if missing...' do
-      before (:each) do
-        click_link('Add New Contact')
-      end
+
+      before(:each) { visit new_contact_path }
 
       it 'name' do
         fill_in :contact_internal_name, with: contact[:internal_name]
