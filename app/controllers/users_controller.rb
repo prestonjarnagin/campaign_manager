@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     # information wasn't saved successfully
     user = User.create(user_params)
     if user.save
+      set_current_user(user.id)
       redirect_to dashboard_path
     else
       flash[:error] = "Error"
