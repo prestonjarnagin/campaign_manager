@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :users
+  p "ENTERED ROUTES"
+  p "path helper #{signup_path}"
+
   get '/', to: 'sessions#new'
   get '/signup', to: 'users#new'
   get 'login', to: 'sessions#new'
