@@ -15,6 +15,14 @@ RSpec.describe SMSService do
         expect(contact_message.sent).to eq(true)
       end
     end
+
+    it '::parse_message' do
+        message = create(:message, text: "Hello <name>")
+        contact_message = create(:contact_message,message: message, sent: false)
+        actual = SMSService.parse_message(contact_message.id)
+
+        expect(actual).to eq("Hello #{contact_message.contact.name}")
+    end
   end
 
   describe 'Instance Methods' do
