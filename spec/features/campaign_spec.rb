@@ -31,8 +31,6 @@ RSpec.describe 'Campaigns' do
       list = create_list(:campaign, 3)
       visit campaigns_path
 
-
-      save_and_open_page
       within("#campaign-#{list[0].id}") do
         click_on 'Details'
       end
