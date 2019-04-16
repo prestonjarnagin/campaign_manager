@@ -10,7 +10,7 @@ class SMSService
     original = contact_message.contact.phone_number
     country_code = '+1'
     formatted_number = country_code + original.gsub(/^1\-|^\+1|(x.*)|(\D)/, '')
-    body = contact_message.message.text
+    body = parse_message(contact_message_id)
     from = ENV['TWILIO_FROM_NUMBER']
 
     if Rails.env == 'test'
@@ -29,6 +29,12 @@ class SMSService
     end
     return response
 
+  end
+
+  def self.parse_message(contact_message_id)
+    contact_message = ContactMessage.find(contact_message_id)
+    name = contact_message.contact.name
+    contact_message.message.text.gsub("<name>", name)
   end
 
   def send
