@@ -38,8 +38,9 @@ class SMSService
   end
 
   def send
-    p "MESSAGES => #{messages}"
+    p "MESSAGES =>"
     messages.each do |contact_message|
+      p "contact_message: #{contact_message.message} "
       SendSmsWorker.perform_async(contact_message.id)
     end
   end
