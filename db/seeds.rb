@@ -14,42 +14,35 @@ user = User.create(
 )
 
 contact = Contact.create(
-  name: 'Preston Jarnagin',
-  internal_name: 'Preston Jarnagin',
+  name: 'John',
+  internal_name: 'John Doe',
   phone_number: '00000000000'
 )
 
 campaign = Campaign.create(
-  name: "Winter is Coming"
+  name: "Test Campaign"
 )
 
-message = Message.create(
-  text: "Hello!",
-  elapse_minutes: 1000,
+message_1 = Message.create(
+  text: "Sent Immediately",
+  elapse_minutes: 0,
+  campaign: campaign
+)
+
+message_2 = Message.create(
+  text: "Sent After 10 Minutes",
+  elapse_minutes: 10,
+  campaign: campaign
+)
+
+message_3 = Message.create(
+  text: "Sent After 20 Minutes",
+  elapse_minutes: 20,
   campaign: campaign
 )
 
 contact.campaigns << campaign
 campaign.contacts << contact
-campaign.messages << message
-
-ContactMessage.create(
-  message: message,
-  contact: contact,
-  send_time: Time.now - 5.minutes,
-  sent: true
-)
-
-ContactMessage.create(
-  message: message,
-  contact: contact,
-  send_time: Time.now - 5.minutes,
-  sent: true
-)
-
-ContactMessage.create(
-  message: message,
-  contact: contact,
-  send_time: Time.now + 10.minutes,
-  sent: true
-)
+campaign.messages << message_1
+campaign.messages << message_2
+campaign.messages << message_3
