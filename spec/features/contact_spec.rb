@@ -95,6 +95,26 @@ RSpec.describe 'Contacts' do
 
       expect(current_path).to eq edit_contact_path(contact)
     end
+
+    it 'allows for upadting of phone number' do
+      contact = create(:contact)
+      new_contact = attributes_for(:contact)
+
+      expect(contact.name).to_not eq(new_contact[:name])
+      expect(contact.internal_name).to_not eq(new_contact[:internal_name])
+      expect(contact.phone_number).to_not eq(new_contact[:phone_number])
+
+      visit edit_contact_path(contact)
+
+      fill_in :contact_name, with: new_contact[:name]
+      fill_in :contact_internal_name, with: new_contact[:internal_name]
+      fill_in :contact_phone_number, with: new_contact[:phone_number]
+      click_button 'Save'
+
+      expect(contact.name).to eq(new_contact[:name])
+      expect(contact.internal_name).to eq(new_contact[:internal_name])
+      expect(contact.phone_number).to eq(new_contact[:phone_number])
+    end
   end
 end
 
