@@ -6,7 +6,6 @@ class SMSService
 
   def self.send_single_message(contact_message_id)
     # Assuming all contacts are U.S. phone numbers
-    p "Enter send_single_message"
 
     contact_message = ContactMessage.find(contact_message_id)
     original = contact_message.contact.phone_number
@@ -40,9 +39,7 @@ class SMSService
   end
 
   def send
-    p "MESSAGES TO ME SENT:"
     messages.each do |contact_message|
-      p "Contact Message: #{contact_message.message.text}"
       SendSmsWorker.perform_async(contact_message.id)
     end
   end
