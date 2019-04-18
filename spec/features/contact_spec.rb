@@ -118,9 +118,50 @@ RSpec.describe 'Contacts' do
       click_button 'Save'
       contact.reload
 
+      expect(current_path).to eq contact_path(contact)
       expect(contact.name).to eq(name)
       expect(contact.internal_name).to eq(internal_name)
       expect(contact.phone_number).to eq(phone_number)
+    end
+
+    describe 'allows updating even if single attribute entered: ' do
+      let!(:contact) { create(:contact) }
+      before(:each) do
+        visit edit_contact_path(contact)
+      end
+
+      it 'name' do
+        name = contact.name + 'Unique'
+
+        fill_in :contact_name, with: name
+        click_button 'Save'
+        contact.reload
+
+        expect(current_path).to eq contact_path(contact)
+        expect(contact.name).to eq(name)
+      end
+
+      it 'internal name' do
+        internal_name = contact.internal_name + 'Unique'
+
+        fill_in :contact_internal_name, with: internal_name
+        click_button 'Save'
+        contact.reload
+
+        expect(current_path).to eq contact_path(contact)
+        expect(contact.internal_name).to eq(internal_name)
+      end
+
+      it 'phone number' do
+        phone_number = '0000000000'
+
+        fill_in :contact_phone_number, with: phone_number
+        click_button 'Save'
+        contact.reload
+
+        expect(current_path).to eq contact_path(contact)
+        expect(contact.phone_number).to eq(phone_number)
+      end
     end
   end
 end
