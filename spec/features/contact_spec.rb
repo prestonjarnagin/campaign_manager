@@ -86,6 +86,15 @@ RSpec.describe 'Contacts' do
       end
     end
   end
+
+  describe 'Contact deatils' do
+    it 'is accessible from the contact index' do
+      pending("")
+      fail
+    end
+
+  end
+
   describe 'Contact editing' do
     it 'is accessible from the contact show page' do
       contact = create(:contact)
