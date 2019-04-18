@@ -5,7 +5,7 @@ RSpec.feature "Registrations", type: :feature do
     visit '/'
 
     click_link 'Create Account'
-    expect(current_path).to eq(new_user_path)
+    expect(current_path).to eq(signup_path)
   end
 
   it 'allows for new user signup' do

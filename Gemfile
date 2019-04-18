@@ -34,6 +34,7 @@ gem 'figaro'
 gem 'jquery-rails'
 gem 'sidekiq'
 gem 'twilio-ruby'
+gem 'redis'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

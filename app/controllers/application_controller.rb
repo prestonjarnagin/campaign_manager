@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user
+  helper_method :current_user, :set_current_user
 
   def current_user
     @current_user ||= User.find_by(id: uid) if uid
+  end
+
+  def set_current_user(user_id)
+    session[:user_id] = user_id
   end
 
   def require_login

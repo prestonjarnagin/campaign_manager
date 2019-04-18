@@ -263,6 +263,7 @@ DEPENDENCIES
   pry
   puma (~> 3.7)
   rails (~> 5.1.6, >= 5.1.6.1)
+  redis
   rspec-rails
   sass-rails (~> 5.0)
   shoulda-matchers

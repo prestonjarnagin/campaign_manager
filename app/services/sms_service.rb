@@ -6,6 +6,7 @@ class SMSService
 
   def self.send_single_message(contact_message_id)
     # Assuming all contacts are U.S. phone numbers
+
     contact_message = ContactMessage.find(contact_message_id)
     original = contact_message.contact.phone_number
     country_code = '+1'
