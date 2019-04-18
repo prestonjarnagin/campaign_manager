@@ -15,6 +15,13 @@ class ContactsController < ApplicationController
   end
 
   def update
+    begin
+      Contact.update(contact_params)
+    rescue
+      flash[:error] = 'Error'
+      @contact = Contact.find(params[:id])
+      redirect_to new_contact_path
+    end
   end
 
   def create
