@@ -86,6 +86,16 @@ RSpec.describe 'Contacts' do
       end
     end
   end
+  describe 'Contact editing' do
+    it 'is accessible from the contact show page' do
+      contact = create(:contact)
+      visit contact_path(contact)
+
+      click_link('Edit Contact')
+
+      expect(current_path).to eq edit_contact_path(contact)
+    end
+  end
 end
 
 def fill_in_contact_form(contact)
