@@ -1,6 +1,7 @@
 <h1><%= @contact.internal_name %></h1>
 <h4>Customer-Facing Name: <%= @contact.name %></h4>
 <h4>Phone Number: <%= @contact.phone_number %></h4>
+<%= link_to "Edit Contact", edit_contact_path(@contact) %>
 
 <h3>Messages</h3>
 

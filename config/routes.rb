@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
 
   resources :users, only: [:new, :create]
-  resources :contacts, only: [:index, :new, :create, :show]
+  resources :contacts, only: [:index, :new, :create, :show, :edit, :update]
   resources :campaigns, only: [:index, :new, :create, :show]
 
   require 'sidekiq/web'
