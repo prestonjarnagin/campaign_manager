@@ -1,1 +1,15 @@
 <h1>Edit Contact</h1>
+
+<div class="container">
+<%= form_for @contact do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+  <%= f.label :internal_name %>
+  <%= f.text_field :internal_name, class: 'form-control' %>
+  <%= f.label :phone_number %>
+  <%= f.text_field :phone_number, class: 'form-control' %>
+
+  <%= f.submit 'Save', class: "btn btn-primary" %>
+<% end %>
+</div>

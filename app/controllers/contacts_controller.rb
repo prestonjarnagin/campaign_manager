@@ -13,6 +13,10 @@ class ContactsController < ApplicationController
   def edit
     @contact = Contact.find(params[:id])
   end
+
+  def update
+  end
+
   def create
     begin
       contact = Contact.create!(contact_params)
