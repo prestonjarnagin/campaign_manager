@@ -40,8 +40,8 @@ class SMSService
 
   def send
     messages.each do |contact_message|
-      SendSmsWorker.perform_async(contact_message.id)
-      p "Message Enqueued"
+      # SendSmsWorker.perform_async(contact_message.id)
+      SMSService.send_single_message(contact_message.id)
     end
   end
 
