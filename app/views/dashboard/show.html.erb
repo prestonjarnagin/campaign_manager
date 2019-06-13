@@ -1,0 +1,6 @@
+<p>
+This application is an alpha prototype.
+Use in production level environments is discouraged.
+</p>
+
+<%= button_to "Send Enqueued Messages (#{@facade.message_queue_count})", messagesend_path, method: :post  %>
