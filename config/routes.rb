@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#show'
 
   post 'login', to: 'sessions#create'
+  post 'messagesend', to: 'message_send#update'
 
   resources :users, only: [:new, :create]
   resources :contacts, only: [:index, :new, :create, :show, :edit, :update]
