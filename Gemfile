@@ -32,7 +32,7 @@ gem 'actionview', '>= 5.1.6.2'
 gem 'cocoon'
 gem 'figaro'
 gem 'jquery-rails'
-gem 'sidekiq'
+# gem 'sidekiq'
 gem 'twilio-ruby'
 gem 'redis'
 
