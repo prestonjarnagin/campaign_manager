@@ -1,9 +1,9 @@
 class DashboardController < ApplicationController
 
   before_action :require_login
-  
-  def show
 
+  def show
+    @facade = DashboardFacade.new
   end
 
 end
