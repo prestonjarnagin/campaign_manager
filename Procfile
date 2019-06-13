@@ -1,1 +1,1 @@
-Sidekiq: bundle exec sidekiq
+Sidekiq: bundle exec sidekiq -q default
