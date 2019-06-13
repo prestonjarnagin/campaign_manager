@@ -41,6 +41,7 @@ class SMSService
   def send
     messages.each do |contact_message|
       SendSmsWorker.perform_async(contact_message.id)
+      p "Message Enqueued"
     end
   end
 
