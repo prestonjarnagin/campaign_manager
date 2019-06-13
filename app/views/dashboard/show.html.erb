@@ -1,6 +1,21 @@
 <p>
-This application is an alpha prototype.
-Use in production level environments is discouraged.
+  This application is an alpha prototype.
+  Use in production level environments is discouraged.
 </p>
+
+<h2>Basic Usage</h2>
+<ul>
+  <li>
+    Create a new campagin. Give the campaign a name, and add new messages with the 'Add New Message' button. Add a time to wait (in minutes) to wait before scheduling each
+    message to be sent.
+  </li>
+  <li>
+    Create a contact. Give the contact a name that can be used when sending them a message - (for eaxample, a message could be sent that says "Hello Ben!" to Ben, and "Hello Mary" to Mary). Before creating the contact, select 1 or more pre-existing campaigns to add the contact to.
+    <strong>Campaigns must be created before contacts for that campagin</strong>
+  </li>
+  <li>
+    When a message is added to the queue to be sent out the button below will increment. The queue must be processed manually. Click the button to send out all queued messages.
+  </li>
+</ul>
 
 <%= button_to "Send Enqueued Messages (#{@facade.message_queue_count})", messagesend_path, method: :post  %>
