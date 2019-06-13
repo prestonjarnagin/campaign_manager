@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   resources :contacts, only: [:index, :new, :create, :show, :edit, :update]
   resources :campaigns, only: [:index, :new, :create, :show]
 
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  # require 'sidekiq/web'
+  # mount Sidekiq::Web => '/sidekiq'
 end
