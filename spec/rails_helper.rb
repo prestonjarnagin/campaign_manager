@@ -1,10 +1,10 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require "spec_helper"
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../../config/environment", __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'rspec/rails'
+require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -64,25 +64,25 @@ RSpec.configure do |config|
 end
 
 Shoulda::Matchers.configure do |config|
-    config.integrate do |with|
+  config.integrate do |with|
     with.test_framework :rspec
     with.library :rails
   end
 end
 
-require 'capybara/poltergeist'
+require "capybara/poltergeist"
 Capybara.javascript_driver = :poltergeist
 
-require 'vcr'
-require 'webmock/rspec'
+require "vcr"
+require "webmock/rspec"
 
 VCR.configure do |config|
   config.ignore_localhost = true
-  config.cassette_library_dir = 'spec/cassettes'
+  config.cassette_library_dir = "spec/cassettes"
   config.hook_into :webmock
   config.configure_rspec_metadata!
-  config.filter_sensitive_data("<TWILIO_SID>") { ENV['TWILIO_SID'] }
+  config.filter_sensitive_data("<TWILIO_SID>") { ENV["TWILIO_SID"] }
   config.allow_http_connections_when_no_cassette = true
-  config.filter_sensitive_data("<TWILIO_AUTH_TOKEN>") { ENV['TWILIO_AUTH_TOKEN']}
-  config.filter_sensitive_data("<TWILIO_FROM_NUMBER>") { ENV['TWILIO_FROM_NUMBER']}
+  config.filter_sensitive_data("<TWILIO_AUTH_TOKEN>") { ENV["TWILIO_AUTH_TOKEN"] }
+  config.filter_sensitive_data("<TWILIO_FROM_NUMBER>") { ENV["TWILIO_FROM_NUMBER"] }
 end

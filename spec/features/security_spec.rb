@@ -1,37 +1,37 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'Security' do
-  describe 'Non-users cannot access' do
-    it '/dashboard' do
-      visit '/dashboard'
+RSpec.describe "Security" do
+  describe "Non-users cannot access" do
+    it "/dashboard" do
+      visit "/dashboard"
       expect(page.status_code).to eq(404)
     end
 
-    describe '/contacts' do
-      it '/' do
-        visit '/contacts'
+    describe "/contacts" do
+      it "/" do
+        visit "/contacts"
         expect(page.status_code).to eq(404)
       end
 
-      it '/new' do
-        visit '/contacts/new'
+      it "/new" do
+        visit "/contacts/new"
         expect(page.status_code).to eq(404)
       end
     end
 
-    describe '/campaigns' do
+    describe "/campaigns" do
       let(:campaign) { create(:campaign) }
-      it '/' do
-        visit '/campaigns'
+      it "/" do
+        visit "/campaigns"
         expect(page.status_code).to eq(404)
       end
 
-      it '/new' do
-        visit '/campaigns/new'
+      it "/new" do
+        visit "/campaigns/new"
         expect(page.status_code).to eq(404)
       end
 
-      it '/:id' do
+      it "/:id" do
         visit "/campaigns/#{campaign.id}"
         expect(page.status_code).to eq(404)
       end

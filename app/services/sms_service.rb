@@ -1,5 +1,4 @@
 class SMSService
-
   def initialize(messages)
     @_messages = messages
   end
@@ -9,27 +8,26 @@ class SMSService
 
     contact_message = ContactMessage.find(contact_message_id)
     original = contact_message.contact.phone_number
-    country_code = '+1'
-    formatted_number = country_code + original.gsub(/^1\-|^\+1|(x.*)|(\D)/, '')
+    country_code = "+1"
+    formatted_number = country_code + original.gsub(/^1\-|^\+1|(x.*)|(\D)/, "")
     body = parse_message(contact_message_id)
-    from = ENV['TWILIO_FROM_NUMBER']
+    from = ENV["TWILIO_FROM_NUMBER"]
 
-    if Rails.env == 'test'
-      to = '+15005550006'
+    if Rails.env == "test"
+      to = "+15005550006"
     else
       to = formatted_number
     end
     response = client.api.account.messages.create(
       from: from,
       to: to,
-      body: body
+      body: body,
     )
 
     if response.error_code == 0
       contact_message.update!(sent: true)
     end
     return response
-
   end
 
   def self.parse_message(contact_message_id)
@@ -52,7 +50,6 @@ class SMSService
   end
 
   def self.client
-    Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_AUTH_TOKEN']
+    Twilio::REST::Client.new ENV["TWILIO_SID"], ENV["TWILIO_AUTH_TOKEN"]
   end
-
 end

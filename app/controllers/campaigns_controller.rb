@@ -1,5 +1,4 @@
 class CampaignsController < ApplicationController
-
   before_action :require_login
 
   def index
@@ -21,8 +20,9 @@ class CampaignsController < ApplicationController
   end
 
   private
-    def campaign_params
-      params.require(:campaign)
+
+  def campaign_params
+    params.require(:campaign)
       .permit(:name, :messages_attributes => [:text, :elapse_minutes, :_destroy])
-    end
+  end
 end

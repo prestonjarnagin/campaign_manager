@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def new
     @user = User.new
   end
@@ -16,6 +15,7 @@ class UsersController < ApplicationController
       redirect_to new_user_path
     end
   end
+
   private
 
   def user_params
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         :first_name,
         :last_name,
         :password,
-        :password_confirmation)
+        :password_confirmation
+      )
   end
-
 end

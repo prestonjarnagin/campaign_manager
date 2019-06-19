@@ -6,8 +6,7 @@ class ContactMessage < ApplicationRecord
 
   def self.message_queue
     ContactMessage
-      .where('send_time < ?', [Time.now])
+      .where("send_time < ?", [Time.now])
       .where(sent: false)
   end
-
 end

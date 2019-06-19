@@ -1,6 +1,5 @@
 class ContactsController < ApplicationController
-
-    before_action :require_login
+  before_action :require_login
 
   def index
     @contacts = Contact.all
@@ -18,7 +17,7 @@ class ContactsController < ApplicationController
     begin
       Contact.update(contact_params)
     rescue
-      flash[:error] = 'Error'
+      flash[:error] = "Error"
       @contact = Contact.find(params[:id])
       redirect_to new_contact_path
     end
@@ -30,7 +29,7 @@ class ContactsController < ApplicationController
       contact.add_campaigns(campaign_ids)
       redirect_to contacts_path
     rescue
-      flash[:error] = 'Error'
+      flash[:error] = "Error"
       @contact = Contact.new
       redirect_to new_contact_path
     end
@@ -50,7 +49,6 @@ class ContactsController < ApplicationController
   # TODO: This logic should probably be pushed out to the model.
   # Pass params[:campaign_ids] to it (may be nil) and have to model fail gracefully
   def campaign_ids
-    (params[:campaign_ids]||[]).map(&:to_i)
+    (params[:campaign_ids] || []).map(&:to_i)
   end
-
 end

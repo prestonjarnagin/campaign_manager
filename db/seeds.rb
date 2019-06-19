@@ -7,38 +7,38 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.create(
-  first_name: 'Preston',
-  last_name: 'Jarnagin',
-  email: 'prstnjarnagin@gmail.com',
-  password: 'password'
+  first_name: "Preston",
+  last_name: "Jarnagin",
+  email: "prstnjarnagin@gmail.com",
+  password: "password",
 )
 
 contact = Contact.create(
-  name: 'John',
-  internal_name: 'John Doe',
-  phone_number: '00000000000'
+  name: "John",
+  internal_name: "John Doe",
+  phone_number: "00000000000",
 )
 
 campaign = Campaign.create(
-  name: "Test Campaign"
+  name: "Test Campaign",
 )
 
 message_1 = Message.create(
   text: "Sent Immediately",
   elapse_minutes: 0,
-  campaign: campaign
+  campaign: campaign,
 )
 
 message_2 = Message.create(
   text: "Sent After 10 Minutes",
   elapse_minutes: 10,
-  campaign: campaign
+  campaign: campaign,
 )
 
 message_3 = Message.create(
   text: "Sent After 20 Minutes",
   elapse_minutes: 20,
-  campaign: campaign
+  campaign: campaign,
 )
 
 contact.campaigns << campaign

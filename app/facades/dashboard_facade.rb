@@ -1,5 +1,4 @@
 class DashboardFacade
-
   attr_reader :message_queue
 
   def initialize
@@ -9,7 +8,4 @@ class DashboardFacade
   def message_queue_count
     @message_queue.count
   end
-
-  
-
 end

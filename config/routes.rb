@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get '/', to: 'sessions#new'
-  get '/signup', to: 'users#new'
-  get 'login', to: 'sessions#new'
+  get "/", to: "sessions#new"
+  get "/signup", to: "users#new"
+  get "login", to: "sessions#new"
 
-  get '/dashboard', to: 'dashboard#show'
+  get "/dashboard", to: "dashboard#show"
 
-  post 'login', to: 'sessions#create'
-  post 'messagesend', to: 'message_send#update'
+  post "login", to: "sessions#create"
+  post "messagesend", to: "message_send#update"
 
   resources :users, only: [:new, :create]
   resources :contacts, only: [:index, :new, :create, :show, :edit, :update]
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      post 'users', to: 'users#create'
+      post "users", to: "users#create"
     end
   end
 end

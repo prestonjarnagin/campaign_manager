@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -11,7 +11,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
 
-require 'twilio-ruby'
+require "twilio-ruby"
 
 # require "rails/test_unit/railtie"
 
