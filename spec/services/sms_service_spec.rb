@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'sidekiq/testing'
 
 RSpec.describe SMSService do
   subject { SMSService }
@@ -11,6 +10,7 @@ RSpec.describe SMSService do
         response = SMSService.send_single_message(contact_message.id)
 
         contact_message.reload
+        pry
         expect(response.error_code).to eq(0)
         expect(contact_message.sent).to eq(true)
       end
@@ -42,15 +42,4 @@ RSpec.describe SMSService do
       end
     end
   end
-
-  describe 'Instance Methods' do
-    let (:message_list_length) { 3 }
-    let (:subject) { SMSService.new(create_list(:contact_message, message_list_length, sent: false)) }
-    it '#send' do
-      Sidekiq::Testing.fake!
-
-      expect{subject.send}.to change(SendSmsWorker.jobs, :size).by(message_list_length)
-    end
-  end
-
 end
