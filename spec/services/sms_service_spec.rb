@@ -8,9 +8,7 @@ RSpec.describe SMSService do
       VCR.use_cassette("twilio_send_message") do
         contact_message = create(:contact_message, sent: false)
         response = SMSService.send_single_message(contact_message.id)
-
         contact_message.reload
-        pry
         expect(response.error_code).to eq(0)
         expect(contact_message.sent).to eq(true)
       end
