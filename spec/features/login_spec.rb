@@ -4,7 +4,7 @@ RSpec.feature "Logins", type: :feature do
   it 'shows website title' do
     visit '/'
 
-    expect(page).to have_content('Mango')
+    expect(page).to have_content('Campaign Manager')
   end
 
   it 'allows existing user to login' do
